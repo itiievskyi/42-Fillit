@@ -19,5 +19,6 @@
 void	record_str(char *arg, char **arr, int p[]);
 void	quit(char **arr, int p[]);
 void	check_char(char **arr, int p[], char ch);
+void	count_tetr(char *arg, char **arr, int p[]);
 
 #endif

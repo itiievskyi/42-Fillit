@@ -3,7 +3,7 @@ int array p[]
 	1 - row (y)
 	2 - column (x)
 	3 - index (input[i])
-	4 -
+	4 - number of tetriminos
 	5 -
 	6 -
 	7 -
