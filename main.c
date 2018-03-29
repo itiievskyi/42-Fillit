@@ -13,15 +13,14 @@
 #include "libft.h"
 #include "fillit.h"
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
+	int		p[10];
 	char	**arr;
-	int	p[10];
 
-	record_str(str, p);
+	arr = NULL;
+	record_str(argv[1], arr, p);
 	if (argc > 1 && argv[1])
-
-		ft_putstr(str);
-	ft_putchar('\0');
-	return 0;
+		ft_putstr("hello\n");
+	return (0);
 }

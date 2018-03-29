@@ -1,8 +1,8 @@
 int array p[]
-	0 - 
-	1 -
-	2 -
-	3 -
+	0 - mistake
+	1 - row (y)
+	2 - column (x)
+	3 - index (input[i])
 	4 -
 	5 -
 	6 -

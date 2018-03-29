@@ -12,7 +12,12 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
-void record_str(char *line);
+void	record_str(char *arg, char **arr, int p[]);
+void	quit(char **arr, int p[]);
+void	check_char(char **arr, int p[], char ch);
 
 #endif
