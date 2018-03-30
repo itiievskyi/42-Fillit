@@ -13,7 +13,7 @@
 NAME = fillit
 
 SRC_PATH = ./
-SRC_NAME = 	main.c input.c
+SRC_NAME = 	main.c input.c quit.c
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
