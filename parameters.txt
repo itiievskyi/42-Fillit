@@ -4,7 +4,7 @@ int array p[]
 	2 - column (x)
 	3 - index (input[i])
 	4 - number of tetriminos
-	5 -
+	5 - number of '#' inside tetrimino
 	6 -
 	7 -
 	8 -
