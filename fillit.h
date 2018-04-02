@@ -21,5 +21,7 @@ void	quit(char *str, int p[]);
 void	check_char(char *str, int p[], char ch);
 char	*record_str(char *arg, int p[]);
 int		ft_next_sqrt(int num);
+void	check_tetr(char *s, int p[], int i, int x);
+void	get_touches(char *s, int p[], int i);
 
 #endif

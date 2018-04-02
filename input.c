@@ -37,7 +37,7 @@ char	*record_str(char *arg, int p[])
 	if (((p[1] + 1) != 5 * p[4]) || ((p[3] + 1) != p[4] * 21))
 		quit(str, p);
 	close(fd);
-	p[7] = ft_next_sqrt(p[4] * 4);
+	p[6] = ft_next_sqrt(p[4] * 4);
 	return (str);
 }
 
@@ -70,11 +70,51 @@ void	check_char(char *str, int p[], char ch)
 		p[2]++;
 }
 
+void	get_touches(char *s, int p[], int i)
+{
+	if (s[i - 1] == '#')
+		p[7]++;
+	if (s[i - 5] == '#')
+		p[7]++;
+	if (s[i + 1] == '#')
+		p[7]++;
+	if (s[i + 5] == '#')
+		p[7]++;
+}
+
+void	check_tetr(char *s, int p[], int i, int x)
+{
+	while (s[i] != '\0')
+	{
+		if (i % 21 == 0)
+		{
+			x = 0;
+			p[5] = 0;
+			p[7] = 0;
+		}
+		if (s[i] == '#')
+		{
+			if (s[i - 1] != '#' && s[i + 1] != '#' && (s[i - 5] != '#'
+				|| (s[i - 5] == '#' && x - 5 < 0)) && (s[i + 5] != '#'
+				|| (s[i + 5] == '#' && x + 5 > 19)))
+				quit(s, p);
+			get_touches(s, p, i);
+			p[5]++;
+			if (p[5] == 4 && p[7] < 6)
+				quit(s, p);
+		}
+		i++;
+		x++;
+	}
+}
+
 void	record_list(char *arg, int p[])
 {
 	char	*str;
 
 	str = record_str(arg, p);
-	printf("Symbols = %d\tLength = %zu\tTetriminos = %d\tMin map size = %d\n", p[3], ft_strlen(str), p[4], p[7]);
+	check_tetr(str, p, 0, 0);
+	printf("Symbols = %d\tLength = %zu\tTetriminos = %d\tMin map size = %d\n", \
+			p[3], ft_strlen(str), p[4], p[6]);
 	printf("%s\n", str);
 }

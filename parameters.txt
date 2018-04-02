@@ -5,6 +5,7 @@ int array p[]
 	3 - index (input[i])
 	4 - number of tetriminos
 	5 - number of '#' inside tetrimino
-	6 - temporary counter
-	7 - min map size
+	6 - min map size
+	7 - number of tetrimino's neighbors
 	8 -
+	9 -
