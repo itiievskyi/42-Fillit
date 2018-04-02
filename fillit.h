@@ -23,7 +23,6 @@ char			*record_str(char *arg, int p[]);
 int				ft_next_sqrt(int num);
 void			check_tetr(char *s, int p[], int i, int x);
 void			get_touches(char *s, int p[], int i);
-
 typedef struct	s_tetr_list
 {
 	int					x[4];
@@ -31,5 +30,6 @@ typedef struct	s_tetr_list
 	char				c;
 	struct s_tetr_list	*next;
 }				t_tetr_list;
+void			ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a);
 
 #endif
