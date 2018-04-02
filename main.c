@@ -12,12 +12,18 @@
 
 #include "libft.h"
 #include "fillit.h"
+#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
 	int		p[10];
+	char	*str;
 
-	record_list(argv[1], p);
+	str = record_str(argv[1], p);
+	check_tetr(str, p, 0, 0);
+	printf("Symbols = %d\tLength = %zu\tTetriminos = %d\tMin map size = %d\n", \
+			p[3], ft_strlen(str), p[4], p[6]);
+	printf("%s\n", str);
 	if (argc > 1 && argv[1])
 		ft_putstr("hello\n");
 	return (0);

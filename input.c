@@ -12,7 +12,6 @@
 
 #include "libft.h"
 #include "fillit.h"
-#include <stdio.h>
 
 char	*record_str(char *arg, int p[])
 {
@@ -106,15 +105,4 @@ void	check_tetr(char *s, int p[], int i, int x)
 		i++;
 		x++;
 	}
-}
-
-void	record_list(char *arg, int p[])
-{
-	char	*str;
-
-	str = record_str(arg, p);
-	check_tetr(str, p, 0, 0);
-	printf("Symbols = %d\tLength = %zu\tTetriminos = %d\tMin map size = %d\n", \
-			p[3], ft_strlen(str), p[4], p[6]);
-	printf("%s\n", str);
 }
