@@ -16,10 +16,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-void	record_str(char *arg, char **arr, int p[]);
-void	quit(char **arr, int p[]);
-void	check_char(char **arr, int p[], char ch);
-void	count_tetr(char *arg, char **arr, int p[]);
-void	create_arr(char *arg, char **arr, int p[]);
+void	record_list(char *arg, int p[]);
+void	quit(char *str, int p[]);
+void	check_char(char *str, int p[], char ch);
+char	*record_str(char *arg, int p[]);
+int		ft_next_sqrt(int num);
 
 #endif

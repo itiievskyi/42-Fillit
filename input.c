@@ -14,29 +14,39 @@
 #include "fillit.h"
 #include <stdio.h>
 
-void	count_tetr(char *arg, char **arr, int p[])
+char	*record_str(char *arg, int p[])
 {
 	int		fd;
 	char	ch;
+	char	*str;
 
+	str = (char *)malloc(sizeof(char));
 	fd = open(arg, O_RDONLY);
 	while (read(fd, &ch, 1) > 0)
-		check_char(arr, p, ch);
+	{
+		check_char(str, p, ch);
+		str[p[3] - 1] = (char)malloc(sizeof(char));
+		str[p[3] - 1] = ch;
+	}
+	str[p[3]] = (char)malloc(sizeof(char));
+	str[p[3]] = 0;
 	if (p[3] < 20)
-		quit(arr, p);
+		quit(str, p);
 	if (p[1] > 128 || p[1] < 4 || (p[1] + 1) % 5 != 0)
-		quit(arr, p);
+		quit(str, p);
 	if (((p[1] + 1) != 5 * p[4]) || ((p[3] + 1) != p[4] * 21))
-		quit(arr, p);
+		quit(str, p);
 	close(fd);
+	p[7] = ft_next_sqrt(p[4] * 4);
+	return (str);
 }
 
-void	check_char(char **arr, int p[], char ch)
+void	check_char(char *str, int p[], char ch)
 {
 	if (p[1] > 128 || p[2] > 4)
-		quit(arr, p);
+		quit(str, p);
 	if (ch != '.' && ch != '#' && ch != '\n')
-		quit(arr, p);
+		quit(str, p);
 	p[3]++;
 	if (ch == '#')
 		p[5]++;
@@ -46,28 +56,25 @@ void	check_char(char **arr, int p[], char ch)
 		{
 			p[4]++;
 			if (p[5] != 4)
-				quit(arr, p);
+				quit(str, p);
 			p[5] = 0;
 		}
 	}
 	if ((ch == '.' || ch == '#') && p[2] > 3)
-		quit(arr, p);
+		quit(str, p);
 	if (ch != '\n' && p[3] % 21 == 0 && p[1] != 0)
-		quit(arr, p);
+		quit(str, p);
 	if (ch == '\n')
 		p[2] = 0;
 	else
 		p[2]++;
 }
 
-void	record_str(char *arg, char **arr, int p[])
+void	record_list(char *arg, int p[])
 {
-	int		fd;
-	char	ch;
+	char	*str;
 
-	count_tetr(arg, arr, p);
-	fd = open(arg, O_RDONLY);
-	while (read(fd, &ch, 1) > 0)
-		ft_putchar(ch);
-	close(fd);
+	str = record_str(arg, p);
+	printf("Symbols = %d\tLength = %zu\tTetriminos = %d\tMin map size = %d\n", p[3], ft_strlen(str), p[4], p[7]);
+	printf("%s\n", str);
 }

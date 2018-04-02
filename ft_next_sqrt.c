@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_next_sqrt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/29 12:54:50 by itiievsk          #+#    #+#             */
-/*   Updated: 2018/03/29 12:55:17 by itiievsk         ###   ########.fr       */
+/*   Created: 2018/04/02 13:24:52 by itiievsk          #+#    #+#             */
+/*   Updated: 2018/04/02 13:24:55 by itiievsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "fillit.h"
-
-int		main(int argc, char **argv)
+int		ft_next_sqrt(int num)
 {
-	int		p[10];
+	int s;
+	int temp;
+	int result;
 
-	record_list(argv[1], p);
-	if (argc > 1 && argv[1])
-		ft_putstr("hello\n");
-	return (0);
+	result = 0;
+	temp = num;
+	while (result == 0)
+	{
+		s = 1;
+		while (s * s < temp)
+		{
+			s++;
+			if (s * s == temp)
+				result = s;
+			else
+				result = 0;
+		}
+		temp++;
+	}
+	return (result);
 }

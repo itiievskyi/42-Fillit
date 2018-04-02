@@ -13,10 +13,10 @@
 #include "libft.h"
 #include "fillit.h"
 
-void	quit(char **arr, int p[])
+void	quit(char *str, int p[])
 {
 	ft_putstr("error\n");
 	bzero(p, 10);
-	free(arr);
+	free(str);
 	exit(1);
 }
