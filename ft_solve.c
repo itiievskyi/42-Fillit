@@ -72,9 +72,7 @@ static int			place_tetr(int size, t_tetr_list *list, char **arr)
 	solve = 0;
 	while ((i < size * size) && solve == 0)
 	{
-		if (is_fit(i, list, arr, size) == 1 && list->c == 'B')
-			return (1);
-		if (is_fit(i, list, arr, size) == 1 && solve == 0)
+		aaif (is_fit(i, list, arr, size) == 1)
 		{
 			if (list->next != NULL)
 				solve = place_tetr(size, list->next, arr);
@@ -94,11 +92,16 @@ char				**ft_solve(t_tetr_list **list, int p[], int a)
 
 	size = a + p[6];
 	solve = 0;
-//	while (solve != 1 && size < 12)
-//	{
+	while (solve != 1 && size < 12)
+	{
+		if (size > p[6])
+		{
+			free(arr);
+			arr = NULL;
+		}
 		arr = ft_malloc_arr(size);
 		solve = place_tetr(size, *list, arr);
 		size++;
-//	}
+	}
 	return (arr);
 }
