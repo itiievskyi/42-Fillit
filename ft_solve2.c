@@ -34,7 +34,7 @@ static void			erase_map(int z[], t_tetr_list *list, char **arr)
 	z[3] = 0;
 }
 
-static int			is_fit(int z[], t_tetr_list *l, char **arr)
+static void			is_fit(int z[], t_tetr_list *l, char **arr)
 {
 	erase_map(z, l, arr);
 	if (arr[z[0] + (l->y)[0]][z[1] + (l->x)[0]] == '.' &&
@@ -46,14 +46,14 @@ static int			is_fit(int z[], t_tetr_list *l, char **arr)
 		arr[z[0] + (l->y)[1]][z[1] + (l->x)[1]] = l->c;
 		arr[z[0] + (l->y)[2]][z[1] + (l->x)[2]] = l->c;
 		arr[z[0] + (l->y)[3]][z[1] + (l->x)[3]] = l->c;
-		return (1);
+		z[3] = 1;
 	}
 	else
-		return (-1);
+		z[3] = -1;
 }
 
 
-static int			place_tetr(int z[], t_tetr_list *list, char **arr)
+static void			place_tetr(int z[], t_tetr_list *list, char **arr)
 {
 	int v[2];
 	ft_bzero(v, 8);
@@ -65,7 +65,7 @@ static int			place_tetr(int z[], t_tetr_list *list, char **arr)
 	{
 		z[0] = v[0];
 		z[1] = v[1];
-		while (! && z[1] < z[5] && z[0] < z[5])
+		while (z[3] != 1 && z[1] < z[5] && z[0] < z[5])
 		{
 			is_fit(z, list, arr);
 			z[1]++;
@@ -84,24 +84,24 @@ static int			place_tetr(int z[], t_tetr_list *list, char **arr)
 		if (z[6] - 1 == (int)((list)->c - 'A') && z[3] == 1)
 			z[4] = 1;
 	}
-	return (z[4]);
 }
 
 char				**ft_solve(t_tetr_list **list, int p[], int a)
 {
+	int			z[10];
 	char		**arr;
 	t_tetr_list	*l;
-	int 		solve;
-	int			size;
 
-	size = p[6] + a;
-	solve = 0;
-	l = *list;
-	while (solve != 1 && size < 12)
+	ft_bzero(z, 40);
+	while (z[4] == 0 && z[5] < 12)
 	{
-		arr = ft_malloc_arr(p[6]);
-		solve = place_tetr(z, l, arr);
-		size++;
+		l = *list;
+		ft_bzero(z, 40);
+		z[5] = p[6] + a;
+		z[6] = p[4];
+		arr = ft_malloc_arr(z[5]);
+		place_tetr(z, l, arr);
+		a++;
 	}
 	return (arr);
 }
