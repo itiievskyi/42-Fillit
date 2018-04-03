@@ -31,5 +31,7 @@ typedef struct	s_tetr_list
 	struct s_tetr_list	*next;
 }				t_tetr_list;
 void			ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a);
+char			**ft_solve(t_tetr_list **list, int p[], int a);
+char			**ft_malloc_arr(int i);
 
 #endif

@@ -1,12 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_create_tetr_list.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/03 10:23:58 by itiievsk          #+#    #+#             */
+/*   Updated: 2018/04/03 10:24:00 by itiievsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "fillit.h"
 #include <stdio.h>
 
-static void	ft_list_zero(int x[], int y[], t_tetr_list **l)
+static void			ft_list_zero(int x[], int y[], t_tetr_list **l)
 {
 	ft_bzero(x, 16);
 	ft_bzero(y, 16);
-	*l = NULL;
+//	*l = NULL;
+	t_tetr_list *sfdfd = *l;
+	if (*l != NULL)
+		printf("%c\n", sfdfd->c);
 }
 
 static void			check_arrs(int x[], int y[], int a, int b)
@@ -32,7 +47,7 @@ static t_tetr_list	*ft_create_elem(int x1[], int y1[], int ch)
 	t_tetr_list	*list;
 
 	list = malloc(sizeof(t_tetr_list));
-    (list->x)[0] = x1[0];
+	(list->x)[0] = x1[0];
 	(list->y)[0] = y1[0];
 	(list->x)[1] = x1[1];
 	(list->y)[1] = y1[1];
@@ -41,7 +56,7 @@ static t_tetr_list	*ft_create_elem(int x1[], int y1[], int ch)
 	(list->x)[3] = x1[3];
 	(list->y)[3] = y1[3];
 	list->c = 'A' + ch;
-    list->next = NULL;
+	list->next = NULL;
 	return (list);
 }
 
@@ -50,7 +65,7 @@ static void			ft_list_push_back(t_tetr_list **l, int x[], int y[], int c)
 	t_tetr_list *temp;
 
 	temp = *l;
-	if (temp)
+	if (temp != NULL)
 	{
 		while (temp->next)
 			temp = temp->next;
@@ -79,7 +94,7 @@ void				ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a)
 			x[h] = a % 5;
 			y[h++] = a / 5;
 		}
-		if (h == 4 && i % 20 == 0)
+		if ((i % 20 == 0 && (i > 20)) || (i == 19))
 		{
 			check_arrs(x, y, 1, 1);
 			ft_list_push_back(l, x, y, i / 21);

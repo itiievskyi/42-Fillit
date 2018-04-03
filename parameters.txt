@@ -7,5 +7,14 @@ int array p[]
 	5 - number of '#' inside tetrimino
 	6 - min map size
 	7 - number of tetrimino's neighbors
-	8 -
-	9 -
+
+
+
+int array z[]
+	0 - current y from ft_solve
+	1 - current x from ft_solve
+	2 - current tetrimino - 1 from ft_solve
+	3 - is current tetrimino placed?
+	4 - is map filled?-
+	5 - current map size
+	6 -
