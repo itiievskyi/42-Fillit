@@ -6,22 +6,19 @@
 /*   By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 10:23:58 by itiievsk          #+#    #+#             */
-/*   Updated: 2018/04/03 10:24:00 by itiievsk         ###   ########.fr       */
+/*   Updated: 2018/04/04 12:43:36 by averemiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-#include <stdio.h>
 
 static void			ft_list_zero(int x[], int y[], t_tetr_list **l)
 {
 	ft_bzero(x, 16);
 	ft_bzero(y, 16);
-//	*l = NULL;
-	t_tetr_list *sfdfd = *l;
 	if (*l != NULL)
-		printf("%c\n", sfdfd->c);
+		write(1, "error", 6);
 }
 
 static void			check_arrs(int x[], int y[], int a, int b)
@@ -86,7 +83,7 @@ void				ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a)
 	{
 		a = 0;
 		h = 0;
-		while(h != 4)
+		while (h != 4)
 		{
 			if (s[i] == '#')
 			{

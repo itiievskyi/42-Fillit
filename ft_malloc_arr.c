@@ -6,7 +6,7 @@
 /*   By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:08:14 by itiievsk          #+#    #+#             */
-/*   Updated: 2018/04/03 11:08:21 by itiievsk         ###   ########.fr       */
+/*   Updated: 2018/04/04 12:24:38 by averemiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ char	**ft_malloc_arr(int i)
 
 	x = 0;
 	arr = (char**)malloc(sizeof(char*) * i + 1);
-	while(x < i)
+	while (x < i)
 	{
 		l = 0;
 		arr[x] = (char*)malloc(sizeof(char) * i + 1);
-			while (l < i)
-				arr[x][l++] = '.';
+		while (l < i)
+			arr[x][l++] = '.';
 		arr[x][i] = '\0';
 		x++;
 	}
 	arr[i] = 0;
-	return(arr);
+	return (arr);
 }

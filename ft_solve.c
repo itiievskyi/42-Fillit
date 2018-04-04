@@ -6,13 +6,12 @@
 /*   By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 10:33:48 by itiievsk          #+#    #+#             */
-/*   Updated: 2018/04/03 10:33:50 by itiievsk         ###   ########.fr       */
+/*   Updated: 2018/04/04 12:46:35 by averemiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-#include <stdio.h>
 
 static void			erase_map(int size, t_tetr_list *list, char **arr)
 {
@@ -20,7 +19,7 @@ static void			erase_map(int size, t_tetr_list *list, char **arr)
 	int		l;
 
 	x = 0;
-	while(x < size)
+	while (x < size)
 	{
 		l = 0;
 		while (l < size)
@@ -33,14 +32,21 @@ static void			erase_map(int size, t_tetr_list *list, char **arr)
 	}
 }
 
-static int			is_fit(int i, t_tetr_list *l, char **arr, int size)
+static int			ft_find_size(char **arr)
 {
-	int	x1;
-	int	y1;
+	int i;
 
-	x1 = i % 4;
-	y1 = i / 4;
-//	erase_map(size, l, arr);
+	i = 0;
+	while (arr[i] != '\0')
+		i++;
+	return (i);
+}
+
+static int			is_fit(int x1, int y1, t_tetr_list *l, char **arr)
+{
+	int				size;
+
+	size = ft_find_size(arr);
 	if ((l->y)[0] + y1 >= size || (l->y)[1] + y1 >= size ||
 		(l->y)[2] + y1 >= size || (l->y)[3] + y1 >= size ||
 		(l->x)[0] + x1 >= size || (l->x)[1] + x1 >= size ||
@@ -58,32 +64,32 @@ static int			is_fit(int i, t_tetr_list *l, char **arr, int size)
 		return (1);
 	}
 	else
-//		printf("%c = WRONG\n", l->c);
 		return (0);
 }
 
-
 static int			place_tetr(int size, t_tetr_list *list, char **arr)
 {
-	int i;
-	int solve;
+	int x;
+	int y;
 
-	i = 0;
-	solve = 0;
-	while ((i < size * size) && solve == 0)
+	y = 0;
+	if (list == NULL)
+		return (1);
+	while (y < size)
 	{
-		if (is_fit(i, list, arr, size) == 1)
+		x = 0;
+		while (x < size)
 		{
-			if (list->next != NULL)
-				solve = place_tetr(size, list->next, arr);
-			else
-				return (1);
+			if (is_fit(x, y, list, arr))
+			{
+				if (place_tetr(size, list->next, arr))
+					return (1);
+				else
+					erase_map(size, list, arr);
+			}
+			x++;
 		}
-		if (solve != 1)
-			erase_map(size, list, arr);
-		else
-			return (1);
-		i++;
+		y++;
 	}
 	return (0);
 }
@@ -91,7 +97,7 @@ static int			place_tetr(int size, t_tetr_list *list, char **arr)
 char				**ft_solve(t_tetr_list **list, int p[], int a)
 {
 	char		**arr;
-	int 		solve;
+	int			solve;
 	int			size;
 
 	size = a + p[6];

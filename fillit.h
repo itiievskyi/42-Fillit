@@ -16,13 +16,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-void			record_list(char *arg, int p[]);
-void			quit(char *str, int p[]);
-void			check_char(char *str, int p[], char ch);
-char			*record_str(char *arg, int p[]);
-int				ft_next_sqrt(int num);
-void			check_tetr(char *s, int p[], int i, int x);
-void			get_touches(char *s, int p[], int i);
+void			ft_record_list(char *arg, int p[]);
+void			ft_quit(char *str, int p[]);
+char			*ft_record_str(char *arg, int p[]);
+void			ft_check_tetr(char *s, int p[], int i, int x);
 typedef struct	s_tetr_list
 {
 	int					x[4];

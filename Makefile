@@ -6,7 +6,7 @@
 #    By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 12:47:31 by itiievsk          #+#    #+#              #
-#    Updated: 2018/03/29 12:50:59 by itiievsk         ###   ########.fr        #
+#    Updated: 2018/04/04 12:20:58 by averemiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ SRC_PATH = ./
 SRC_NAME = 	main.c\
 			input.c\
 			quit.c\
-			ft_next_sqrt.c\
 			ft_create_tetr_list.c\
 			ft_solve.c\
-			ft_malloc_arr.c
+			ft_malloc_arr.c\
+			ft_record_str.c
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -53,8 +53,4 @@ fclean: clean
 
 re: fclean all
 
-norme:
-	norminette $(SRC)
-	norminette $(INC_PATH)fillit.h
-
-.PHONY: all clean fclean re norme
+.PHONY: all clean fclean re
