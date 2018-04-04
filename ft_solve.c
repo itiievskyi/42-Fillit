@@ -102,16 +102,15 @@ char				**ft_solve(t_tetr_list **list, int p[], int a)
 
 	size = a + p[6];
 	solve = 0;
-	while (solve != 1 && size < 12)
+	while (solve != 1 && size < 15)
 	{
 		if (size > p[6])
-		{
-			free(arr);
-			arr = NULL;
-		}
-		arr = ft_malloc_arr(size);
+			ft_erase_array(arr, size - 1);
+		if ((arr = ft_malloc_arr(size)) == NULL)
+			return (NULL);
 		solve = place_tetr(size, *list, arr);
 		size++;
 	}
+	p[6] = size;
 	return (arr);
 }

@@ -16,10 +16,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-void			ft_record_list(char *arg, int p[]);
-void			ft_quit(char *str, int p[]);
-char			*ft_record_str(char *arg, int p[]);
-void			ft_check_tetr(char *s, int p[], int i, int x);
 typedef struct	s_tetr_list
 {
 	int					x[4];
@@ -27,8 +23,16 @@ typedef struct	s_tetr_list
 	char				c;
 	struct s_tetr_list	*next;
 }				t_tetr_list;
+
+void			ft_delete_list(t_tetr_list **alst);
+void			ft_record_list(char *arg, int p[]);
+void			ft_quit(char *str, int p[]);
+void			ft_erase_array(char **arr, int size);
+char			*ft_record_str(char *arg, int p[]);
+void			ft_check_tetr(char *s, int p[], int i, int x);
 void			ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a);
 char			**ft_solve(t_tetr_list **list, int p[], int a);
 char			**ft_malloc_arr(int i);
+void			ft_clean_all(int p[], char **arr, t_tetr_list **list, char *s);
 
 #endif

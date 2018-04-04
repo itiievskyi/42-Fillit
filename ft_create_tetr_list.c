@@ -17,8 +17,7 @@ static void			ft_list_zero(int x[], int y[], t_tetr_list **l)
 {
 	ft_bzero(x, 16);
 	ft_bzero(y, 16);
-	if (*l != NULL)
-		write(1, "error", 6);
+	*l = NULL;
 }
 
 static void			check_arrs(int x[], int y[], int a, int b)
@@ -43,7 +42,8 @@ static t_tetr_list	*ft_create_elem(int x1[], int y1[], int ch)
 {
 	t_tetr_list	*list;
 
-	list = malloc(sizeof(t_tetr_list));
+	if ((list = malloc(sizeof(t_tetr_list))) == NULL)
+		return (NULL);
 	(list->x)[0] = x1[0];
 	(list->y)[0] = y1[0];
 	(list->x)[1] = x1[1];
@@ -57,7 +57,7 @@ static t_tetr_list	*ft_create_elem(int x1[], int y1[], int ch)
 	return (list);
 }
 
-static void			ft_list_push_back(t_tetr_list **l, int x[], int y[], int c)
+static int			ft_list_push_back(t_tetr_list **l, int x[], int y[], int c)
 {
 	t_tetr_list *temp;
 
@@ -66,10 +66,21 @@ static void			ft_list_push_back(t_tetr_list **l, int x[], int y[], int c)
 	{
 		while (temp->next)
 			temp = temp->next;
-		temp->next = ft_create_elem(x, y, c);
+		if ((temp->next = ft_create_elem(x, y, c)) == NULL)
+		{
+			*l = NULL;
+			return (-1);
+		}
 	}
 	else
-		*l = ft_create_elem(x, y, c);
+	{
+		if ((*l = ft_create_elem(x, y, c)) == NULL)
+		{
+			*l = NULL;
+			return (-1);
+		}
+	}
+	return (1);
 }
 
 void				ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a)
@@ -85,16 +96,16 @@ void				ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a)
 		h = 0;
 		while (h != 4)
 		{
-			if (s[i] == '#')
+			if (s[i++] == '#')
 			{
 				x[h] = a % 5;
 				y[h++] = a / 5;
 			}
-			i++;
 			a++;
 		}
 		check_arrs(x, y, 1, 1);
-		ft_list_push_back(l, x, y, i / 21);
+		if ((ft_list_push_back(l, x, y, i / 21)) == -1)
+			break ;
 		while (i % 21 && s[i] != '\0')
 			i++;
 	}

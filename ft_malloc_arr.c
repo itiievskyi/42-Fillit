@@ -20,11 +20,16 @@ char	**ft_malloc_arr(int i)
 	char	**arr;
 
 	x = 0;
-	arr = (char**)malloc(sizeof(char*) * i + 1);
+	if ((arr = (char**)malloc(sizeof(char*) * i + 1)) == NULL)
+		return (NULL);
 	while (x < i)
 	{
 		l = 0;
-		arr[x] = (char*)malloc(sizeof(char) * i + 1);
+		if ((arr[x] = (char*)malloc(sizeof(char) * i + 1)) == NULL)
+		{
+			ft_erase_array(arr, x);
+			return (NULL);
+		}
 		while (l < i)
 			arr[x][l++] = '.';
 		arr[x][i] = '\0';

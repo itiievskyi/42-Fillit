@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quit.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/30 11:16:58 by itiievsk          #+#    #+#             */
-/*   Updated: 2018/03/30 11:17:00 by itiievsk         ###   ########.fr       */
+/*   Created: 2018/03/23 18:20:27 by itiievsk          #+#    #+#             */
+/*   Updated: 2018/03/23 18:20:29 by itiievsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fillit.h"
 
-void	ft_quit(char *str, int p[])
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	ft_putstr("error\n");
-	bzero(p, 60);
-	free(str);
-	exit(1);
+	size_t			i;
+	unsigned char	ch;
+	unsigned char	*line;
+
+	i = 0;
+	ch = (unsigned char)c;
+	line = (unsigned char *)s;
+	while (i < n)
+	{
+		if (line[i] == ch)
+			return ((void *)&line[i]);
+		i++;
+	}
+	return (NULL);
 }

@@ -1,0 +1,59 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: itiievsk <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/03/29 12:47:31 by itiievsk          #+#    #+#              #
+#    Updated: 2018/04/04 12:20:58 by averemiy         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = fillit
+
+SRC_PATH = ./
+SRC_NAME = 	main.c\
+			ft_check_tetr.c\
+			ft_quit.c\
+			ft_create_tetr_list.c\
+			ft_solve.c\
+			ft_malloc_arr.c\
+			ft_record_str.c\
+			ft_erase_array.c\
+			ft_delete_list.c\
+			ft_clean_all.c
+
+OBJ_PATH = ./obj/
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+INC_PATH = libft.h fillit.h
+
+LIB = libft.a
+
+CC = gcc
+CFLAGS = -Werror -Wall -Wextra
+
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+INC = $(addprefix -I,$(INC_PATH))
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(INC) -o $(NAME) $(LIB) $(OBJ)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+
+clean:
+	rm -fv $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+
+fclean: clean
+	rm -fv $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

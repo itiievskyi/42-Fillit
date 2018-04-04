@@ -13,6 +13,29 @@
 #include "libft.h"
 #include "fillit.h"
 
+static int	ft_count_chars(char *arg, int p[])
+{
+	int		fd;
+	char	ch;
+	int		c;
+
+	c = 0;
+	fd = open(arg, O_RDONLY);
+	while (read(fd, &ch, 1) > 0)
+	{
+		c++;
+		if (c > 545)
+		{
+			close(fd);
+			ft_putstr("error\n");
+			bzero(p, 32);
+			exit(1);
+		}
+	}
+	close(fd);
+	return (c);
+}
+
 static int	ft_next_sqrt(int num)
 {
 	int s;
@@ -71,20 +94,21 @@ char		*ft_record_str(char *arg, int p[])
 	int		fd;
 	char	ch;
 	char	*str;
+	int		c;
 
-	str = (char *)malloc(sizeof(char));
+	c = ft_count_chars(arg, p);
+	if ((str = (char *)malloc(sizeof(char) * (c + 1))) == NULL)
+		ft_quit(str, p);
 	fd = open(arg, O_RDONLY);
 	while (read(fd, &ch, 1) > 0)
 	{
 		check_char(str, p, ch);
-		str[p[3] - 1] = (char)malloc(sizeof(char));
 		str[p[3] - 1] = ch;
 	}
-	str[p[3]] = (char)malloc(sizeof(char));
-	str[p[3]] = 0;
+	str[p[3]] = '\0';
 	if (p[3] < 20)
 		ft_quit(str, p);
-	if (p[1] > 128 || p[1] < 4 || (p[1] + 1) % 5 != 0)
+	if (p[1] > 129 || p[1] < 4 || (p[1] + 1) % 5 != 0)
 		ft_quit(str, p);
 	if (((p[1] + 1) != 5 * p[4]) || ((p[3] + 1) != p[4] * 21))
 		ft_quit(str, p);
