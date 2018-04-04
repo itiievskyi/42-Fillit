@@ -40,7 +40,7 @@ static int			is_fit(int i, t_tetr_list *l, char **arr, int size)
 
 	x1 = i % 4;
 	y1 = i / 4;
-	erase_map(size, l, arr);
+//	erase_map(size, l, arr);
 	if ((l->y)[0] + y1 >= size || (l->y)[1] + y1 >= size ||
 		(l->y)[2] + y1 >= size || (l->y)[3] + y1 >= size ||
 		(l->x)[0] + x1 >= size || (l->x)[1] + x1 >= size ||
@@ -58,7 +58,7 @@ static int			is_fit(int i, t_tetr_list *l, char **arr, int size)
 		return (1);
 	}
 	else
-		printf("%c = WRONG\n", l->c);
+//		printf("%c = WRONG\n", l->c);
 		return (0);
 }
 
@@ -72,13 +72,17 @@ static int			place_tetr(int size, t_tetr_list *list, char **arr)
 	solve = 0;
 	while ((i < size * size) && solve == 0)
 	{
-		aaif (is_fit(i, list, arr, size) == 1)
+		if (is_fit(i, list, arr, size) == 1)
 		{
 			if (list->next != NULL)
 				solve = place_tetr(size, list->next, arr);
 			else
 				return (1);
 		}
+		if (solve != 1)
+			erase_map(size, list, arr);
+		else
+			return (1);
 		i++;
 	}
 	return (0);

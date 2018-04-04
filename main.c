@@ -24,6 +24,8 @@ int		main(int argc, char **argv)
 	l = NULL;
 	arr = NULL;
 	ft_bzero(p, 60);
+	if (argc != 2)
+		ft_putstr("error\n");
 	str = record_str(argv[1], p);
 	check_tetr(str, p, 0, 0);
 	ft_create_tetr_list(str, &l, 0, 0);
