@@ -84,22 +84,21 @@ void				ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a)
 	ft_list_zero(x, y, l);
 	while (s[i] != '\0')
 	{
-		if (i % 21 == 0)
+		a = 0;
+		h = 0;
+		while(h != 4)
 		{
-			a = 0;
-			h = 0;
+			if (s[i] == '#')
+			{
+				x[h] = a % 5;
+				y[h++] = a / 5;
+			}
+			i++;
+			a++;
 		}
-		if (s[i] == '#')
-		{
-			x[h] = a % 5;
-			y[h++] = a / 5;
-		}
-		if ((i % 20 == 0 && (i > 20)) || (i == 19))
-		{
-			check_arrs(x, y, 1, 1);
-			ft_list_push_back(l, x, y, i / 21);
-		}
-		a++;
-		i++;
+		check_arrs(x, y, 1, 1);
+		ft_list_push_back(l, x, y, i / 21);
+		while (i % 21 && s[i] != '\0')
+			i++;
 	}
 }
