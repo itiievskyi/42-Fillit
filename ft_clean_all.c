@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fillit.h"
 
 void	ft_clean_all(int p[], char **arr, t_tetr_list **list, char *s)

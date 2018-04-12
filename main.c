@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fillit.h"
 
 static void		ft_print_array(char **arr, int m)
@@ -32,15 +31,12 @@ int				main(int argc, char **argv)
 	l = NULL;
 	arr = NULL;
 	ft_bzero(p, 32);
-	if (argc == 1)
-		str = ft_stdin(p);
-	else if (argc == 2)
-		str = ft_record_str(argv[1], p);
-	else
+	if (argc != 2)
 	{
-		ft_putstr("error\n");
+		ft_putstr("usage: fillit source_file\n");
 		exit(1);
 	}
+	str = ft_record_str(argv[1], p);
 	ft_check_tetr(str, p, 0, 0);
 	ft_create_tetr_list(str, &l, 0, 0);
 	if (l == NULL)

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fillit.h"
 
 static void			ft_list_zero(int x[], int y[], t_tetr_list **l)

@@ -41,11 +41,10 @@ SRC_NAME = 	main.c\
 			ft_erase_array.c\
 			ft_delete_list.c\
 			ft_clean_all.c\
-			ft_stdin.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-INC_PATH = libft.h fillit.h
+INC_PATH = fillit.h
 
 LIB = libft.a
 
