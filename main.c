@@ -33,7 +33,7 @@ int				main(int argc, char **argv)
 	ft_bzero(p, 32);
 	if (argc != 2)
 	{
-		ft_putstr("usage: fillit source_file\n");
+		ft_putstr("usage: fillit input_file\n");
 		exit(1);
 	}
 	str = ft_record_str(argv[1], p);
