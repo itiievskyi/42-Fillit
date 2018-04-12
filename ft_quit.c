@@ -16,7 +16,7 @@
 void	ft_quit(char *str, int p[])
 {
 	ft_putstr("error\n");
-	bzero(p, 32);
+	ft_bzero(p, 32);
 	free(str);
 	exit(1);
 }

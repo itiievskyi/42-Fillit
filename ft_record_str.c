@@ -28,7 +28,7 @@ static int	ft_count_chars(char *arg, int p[])
 		{
 			close(fd);
 			ft_putstr("error\n");
-			bzero(p, 32);
+			ft_bzero(p, 32);
 			exit(1);
 		}
 	}
