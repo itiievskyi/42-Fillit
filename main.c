@@ -32,12 +32,15 @@ int				main(int argc, char **argv)
 	l = NULL;
 	arr = NULL;
 	ft_bzero(p, 32);
-	if (argc != 2)
+	if (argc == 1)
+		str = ft_stdin(p);
+	else if (argc == 2)
+		str = ft_record_str(argv[1], p);
+	else
 	{
 		ft_putstr("error\n");
 		exit(1);
 	}
-	str = ft_record_str(argv[1], p);
 	ft_check_tetr(str, p, 0, 0);
 	ft_create_tetr_list(str, &l, 0, 0);
 	if (l == NULL)

@@ -29,6 +29,7 @@ void			ft_record_list(char *arg, int p[]);
 void			ft_quit(char *str, int p[]);
 void			ft_erase_array(char **arr, int size);
 char			*ft_record_str(char *arg, int p[]);
+char			*ft_stdin(int p[]);
 void			ft_check_tetr(char *s, int p[], int i, int x);
 void			ft_create_tetr_list(char *s, t_tetr_list **l, int i, int a);
 char			**ft_solve(t_tetr_list **list, int p[], int a);
