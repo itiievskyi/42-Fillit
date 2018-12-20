@@ -1,4 +1,4 @@
-# 42-Fillit
+# Fillit (42 School Project)
 This is some sort of Tetris game with automatic filling the game field.
 
 * The program takes only one parameter, a file which contains a list of Tetriminos to assemble. This file has a very specific format : every Tetrimino must exactly fit in a
